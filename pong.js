@@ -63,13 +63,22 @@ function Computer() {
     this.render = function() {
         this.paddle.render();
     };
+    this.update = function(ball) { 
+        var ballPos = ball.y; 
+        
+        if (ballPos < (this.paddle.y + (this.paddle.height / 2) + 20)) { 
+            this.paddle.move(-10); 
+        } else if (ballPos > (this.paddle.y + (this.paddle.height / 2) + 20)) { 
+            this.paddle.move(10); 
+        } 
+    }; 
 }
 
 function Ball(x, y) {
     this.x = x;
     this.y = y;
-    this.x_speed = getRandInteger(-10, 10); 
-    this.y_speed = getRandInteger(-10, 10); 
+    this.x_speed = -5;  
+    this.y_speed = 0;
     this.radius = 8;
     this.render = function() {
         context.beginPath();
@@ -80,30 +89,35 @@ function Ball(x, y) {
     this.move = function(paddle1, paddle2) {
         this.x += this.x_speed;
         this.y += this.y_speed;
-        var top_x = this.x - 8;
-        var top_y = this.y - 8;
-        var bottom_x = this.x + 8;
-        var bottom_y = this.y + 8;
+        this.left = this.x - 8;
+        this.top = this.y - 8; 
+        this.right = this.x + 8; 
+        this.bottom = this.y + 8;
 
-        if (top_y < 0) {
+        if (this.top < 0) {
             this.y = 8;
             this.y_speed = -this.y_speed;
-        } else if (bottom_y > h) {
+        } else if (this.bottom > h) {
             this.y = h - 8;
             this.y_speed = -this.y_speed;
         }
-
-        if (top_x > (w / 2)){
-            if (top_x < (paddle1.x + paddle1.width) && bottom_x > paddle1.x &&
-                top_y < (paddle1.y + paddle1.height) && bottom_y > paddle1.y) {
-                    this.x_speed = this.x_speed * -1;
+        if (this.x < 0 || this.x > w) { 
+            this.x_speed = -5; 
+            this.y_speed = 0; 
+            this.x = (w / 2); 
+            this.y = (h / 2); 
+        } 
+        if (this.left > (w / 2)){ 
+            if (this.left < (paddle1.x + paddle1.width) && this.right > paddle1.x && 
+                this.top < (paddle1.y + paddle1.height) && this.bottom > paddle1.y) { 
+                    this.x_speed *=  -1;
                     this.y_speed += (paddle1.speed / 4);
                     this.x += this.x_speed;
             }
         } else {
-            if (top_x < (paddle2.x + paddle2.width) && bottom_x > paddle2.x &&
-                top_y < (paddle2.y + paddle2.height) && bottom_y > paddle2.y) {
-                    this.x_speed = this.x_speed * -1;
+            if (this.left < (paddle2.x + paddle2.width) && this.right > paddle2.x &&
+                this.top < (paddle2.y + paddle2.height) && this.bottom  > paddle2.y) {
+                    this.x_speed *= -1;
                     this.y_speed += (paddle2.speed / 4);
                     this.x += this.x_speed;
             }
@@ -111,18 +125,23 @@ function Ball(x, y) {
     };
 }
 
-function render() {
+var render = function() {
     pongTable();
     player.render();
     computer.render();
     ball.render();
     ball.move(computer.paddle, player.paddle); 
-}
+}; 
+
+var update = function() { 
+    computer.update(ball); 
+}; 
 
 var step = function() {
+    update(); 
     render();
     animate(step);
-}
+};
 
 window.onload = function() {
     animate(step);
