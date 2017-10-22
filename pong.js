@@ -14,6 +14,11 @@ var player = new Player();
 var computer = new Computer();
 var ball = new Ball((w / 2), (h / 2));
 
+var animate = window.requestAnimationFrame || 
+    window.webkitRequestAnimationFrame || 
+    window.mozRequestAnimationFrame || 
+    function(callback) { window.setTimeout(callback, 1000/60) }; 
+    
 function pongTable() {
     context.fillStyle = "#000000";
     context.fillRect(0, 0, w, h);
@@ -24,10 +29,22 @@ function Paddle(x, y, width, height) {
     this.y = y;
     this.width = width;
     this.height = height;
+    this.speed = 0; 
     this.render = function() {
         context.fillStyle = "#FFFFFF";
         context.fillRect(this.x, this.y, this.width, this.height);
     };
+    this.move = function(y) { 
+        this.y += y; 
+        this.speed = y; 
+        if (this.y < 4) { 
+            this.y = 4; 
+            this.speed = 0; 
+        } else if (this.y + this.height > h) { 
+            this.y = h - this.height; 
+            this.speed = 0; 
+        } 
+    }; 
 }
 
 function Player() {
@@ -63,6 +80,20 @@ function render() {
     ball.render();
 }
 
-window.onload = function() {
+var step = function() {
     render();
+    animate(step);
 }
+
+window.onload = function() {
+    animate(step);
+}
+
+window.addEventListener("keydown", function(event) {
+    var k = event.keyCode;
+    if (k == 38) {
+        player.paddle.move(-15);
+    } else if (k == 40) {
+        player.paddle.move(15);
+    }
+});
