@@ -9,6 +9,11 @@ var dy = -2;
 var xPos = 0;
 var yPos = 0;
 
+var playerX = 10;
+var playerY = 10;
+var endPointX = 10;
+var endPointY = 10;
+
 var xEndPos = 700;
 var yEndPos = 450;
 
@@ -19,7 +24,7 @@ function move(e){
         if(xPos>=canvas.width){
             xPos-=10;
         }
-        context.fillRect(xPos, yPos, 10, 10);
+        context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
     }
     if(e.keyCode == 37){
@@ -28,7 +33,7 @@ function move(e){
         if(xPos<=-10){
             xPos+=10;
         }
-        context.fillRect(xPos, yPos, 10, 10);
+        context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
     }
     if(e.keyCode == 38){
@@ -37,7 +42,7 @@ function move(e){
         if(yPos<=-10){
             yPos+=10
         }
-        context.fillRect(xPos, yPos, 10, 10);
+        context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
     }
     if(e.keyCode == 40){
@@ -46,7 +51,7 @@ function move(e){
         if(yPos>=canvas.height){
             yPos-=10
         }
-        context.fillRect(xPos, yPos, 10, 10);
+        context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
     }
 };
@@ -54,7 +59,7 @@ function move(e){
 document.onkeydown = move;
 
 function drawPlayer(){
-    context.fillRect(xPos, yPos, 10, 10);
+    context.fillRect(xPos, yPos, playerX, playerY);
     context.fillStyle = "#BB00BB";
     context.fill();
     context.stroke();
@@ -68,9 +73,16 @@ function drawBall() {
 }
 
 function drawEndPoint(){
-    context.fillRect(xEndPos, yEndPos, 20, 20);
+    context.fillRect(xEndPos, yEndPos, endPointX, endPointY);
     context.fillStyle = "#FF0000";
     context.fill();
+}
+
+function collisionEnd(x1, y1, x2, y2){
+    var xDistance = x2 - x1;
+    var yDistance = y2 - y1;
+    
+    return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 
 function draw() {
@@ -78,7 +90,7 @@ function draw() {
     drawBall();
     drawPlayer();
     drawEndPoint();
-    
+    animate();
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
@@ -87,6 +99,15 @@ function draw() {
     }
     x += dx;
     y += dy;
+}
+
+function animate(){
+    if (collisionEnd(xPos, yPos, xEndPos, yEndPos) <= 0){
+        alert("You Win!");
+        xPos = 0;
+        yPos = 0;
+    }
+    console.log(collisionEnd(xPos, yPos, xEndPos, yEndPos));
 }
 
 setInterval(draw, 10);
