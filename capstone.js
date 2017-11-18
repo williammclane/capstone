@@ -9,8 +9,8 @@ var dy = -2;
 var xPos = 0;
 var yPos = 0;
 
-context.fillRect(xPos, yPos, 10, 10);
-context.stroke();
+var xEndPos = 700;
+var yEndPos = 450;
 
 function move(e){
     if(e.keyCode == 39){
@@ -55,20 +55,29 @@ document.onkeydown = move;
 
 function drawPlayer(){
     context.fillRect(xPos, yPos, 10, 10);
+    context.fillStyle = "#BB00BB";
+    context.fill();
     context.stroke();
 }
 function drawBall() {
     context.beginPath();
     context.arc(x, y, ballRadius, 0, Math.PI*2);
-    context.fillStyle = "#0095DD";
+    context.fillStyle = "#0000FF";
     context.fill();
     context.closePath();
+}
+
+function drawEndPoint(){
+    context.fillRect(xEndPos, yEndPos, 20, 20);
+    context.fillStyle = "#FF0000";
+    context.fill();
 }
 
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPlayer();
+    drawEndPoint();
     
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
