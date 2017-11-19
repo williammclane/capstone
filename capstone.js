@@ -17,6 +17,8 @@ var endPointY = 10;
 var xEndPos = 700;
 var yEndPos = 450;
 
+var levelNumber = 1;
+
 var objectPosX = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY = Math.floor(Math.random() * (canvas.height/10)) * 10;
 var objectSize = 10;
@@ -295,6 +297,12 @@ function drawObject9(){
     context.fill();
 }
 
+function nextLevel(){
+    context.font = "50px";
+    context.textAlign = "center";
+    context.fillText("Level - " + levelNumber, 350, 10);
+}
+
 function collision(x1, y1, x2, y2){
     var xDistance = x2 - x1;
     var yDistance = y2 - y1;
@@ -317,6 +325,7 @@ function draw() {
     drawObject7();
     drawObject8();
     drawObject9();
+    nextLevel();
     animate();
     
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
@@ -330,9 +339,16 @@ function draw() {
 }
 
 function animate(){
-    if (collision(xPos, yPos, xEndPos, yEndPos) <= 0){
+    if (levelNumber >= 6){
         alert("You Win!");
-        window.location.reload(); 
+        window.location.reload();
+    }
+    if (collision(xPos, yPos, xEndPos, yEndPos) <= 0){
+        //alert("You Win!");
+        levelNumber += 1;
+        xPos = 0;
+        yPos = 0;
+        //window.location.reload(); 
     }
     if (collision(xPos, yPos, x, y) <= 15){
         alert("You Lose!");
