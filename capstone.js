@@ -3,8 +3,8 @@ var context = canvas.getContext("2d");
 var ballRadius = 10;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 2;
-var dy = -2;
+var dx = 3;
+var dy = -3;
 
 var xPos = 0;
 var yPos = 0;
@@ -335,9 +335,17 @@ function animate(){
         xPos = 0;
         yPos = 0;
     }
+    if (collision(xPos, yPos, x, y) <= 10){
+        alert("You Lose!");
+        xPos = 0;
+        yPos = 0;
+    }
     //console.log(collision(xPos, yPos, xEndPos, yEndPos));
-    console.log(collision(objectPosX, objectPosY, xPos, yPos))
-    
+    //console.log(collision(objectPosX, objectPosY, xPos, yPos))
+    //console.log(collision(objectPosX1, objectPosY1, xPos, yPos))
+    //console.log(collision(xPos, yPos, x, y));
+    console.log(collision(objectPosX, objectPosY, x, y))
+    console.log(collision(objectPosX1, objectPosY1, x, y))
 }
 
 setInterval(draw, 10);
