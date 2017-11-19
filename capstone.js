@@ -19,43 +19,43 @@ var yEndPos = 450;
 
 var objectPosX = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize = 10;
 
 var objectPosX1 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY1 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize1 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize1 = 10;
 
 var objectPosX2 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY2 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize2 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize2 = 10;
 
 var objectPosX3 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY3 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize3 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize3 = 10;
 
 var objectPosX4 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY4 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize4 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize4 = 10;
 
 var objectPosX5 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY5 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize5 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize5 = 10;
 
 var objectPosX6 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY6 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize6 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize6 = 10;
 
 var objectPosX7 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY7 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize7 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize7 = 10;
 
 var objectPosX8 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY8 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize8 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize8 = 10;
 
 var objectPosX9 = Math.floor(Math.random() * (canvas.width/10)) * 10;
 var objectPosY9 = Math.floor(Math.random() * (canvas.height/10)) * 10;
-var objectSize9 = Math.floor(Math.random() * 4) * 10 + 10;
+var objectSize9 = 10;
 
 function move(e){
     if(e.keyCode == 39){
@@ -64,13 +64,73 @@ function move(e){
         if(xPos>=canvas.width){
             xPos-=10;
         }
+        if(collision(objectPosX, objectPosY, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX1, objectPosY1, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX2, objectPosY2, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX3, objectPosY3, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX4, objectPosY4, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX5, objectPosY5, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX6, objectPosY6, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX7, objectPosY7, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX8, objectPosY8, xPos, yPos) <= 0){
+            xPos-=10;
+        }
+        if(collision(objectPosX9, objectPosY9, xPos, yPos) <= 0){
+            xPos-=10;
+        }
         context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
-    }
+        }
     if(e.keyCode == 37){
         context.clearRect(0, 0, canvas.width, canvas.height);
         xPos-=10;
         if(xPos<=-10){
+            xPos+=10;
+        }
+        if(collision(objectPosX, objectPosY, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX1, objectPosY1, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX2, objectPosY2, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX3, objectPosY3, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX4, objectPosY4, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX5, objectPosY5, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX6, objectPosY6, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX7, objectPosY7, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX8, objectPosY8, xPos, yPos) <= 0){
+            xPos+=10;
+        }
+        if(collision(objectPosX9, objectPosY9, xPos, yPos) <= 0){
             xPos+=10;
         }
         context.fillRect(xPos, yPos, playerX, playerY);
@@ -82,6 +142,36 @@ function move(e){
         if(yPos<=-10){
             yPos+=10
         }
+        if(collision(objectPosX, objectPosY, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX1, objectPosY1, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX2, objectPosY2, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX3, objectPosY3, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX4, objectPosY4, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX5, objectPosY5, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX6, objectPosY6, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX7, objectPosY7, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX8, objectPosY8, xPos, yPos) <= 0){
+            yPos+=10;
+        }
+        if(collision(objectPosX9, objectPosY9, xPos, yPos) <= 0){
+            yPos+=10;
+        }
         context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
     }
@@ -90,6 +180,36 @@ function move(e){
         yPos+=10;
         if(yPos>=canvas.height){
             yPos-=10
+        }
+        if(collision(objectPosX, objectPosY, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX1, objectPosY1, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX2, objectPosY2, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX3, objectPosY3, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX4, objectPosY4, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX5, objectPosY5, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX6, objectPosY6, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX7, objectPosY7, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX8, objectPosY8, xPos, yPos) <= 0){
+            yPos-=10;
+        }
+        if(collision(objectPosX9, objectPosY9, xPos, yPos) <= 0){
+            yPos-=10;
         }
         context.fillRect(xPos, yPos, playerX, playerY);
         context.stroke();
@@ -215,7 +335,9 @@ function animate(){
         xPos = 0;
         yPos = 0;
     }
-    console.log(collision(xPos, yPos, xEndPos, yEndPos));
+    //console.log(collision(xPos, yPos, xEndPos, yEndPos));
+    console.log(collision(objectPosX, objectPosY, xPos, yPos))
+    
 }
 
 setInterval(draw, 10);
