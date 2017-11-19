@@ -17,9 +17,45 @@ var endPointY = 10;
 var xEndPos = 700;
 var yEndPos = 450;
 
-var objectPosX = Math.floor(Math.random() * canvas.width) + 10;
-var objectPosY = Math.floor(Math.random() * canvas.height) + 10;
-var objectSize = Math.floor(Math.random() * 30) + 10;
+var objectPosX = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX1 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY1 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize1 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX2 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY2 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize2 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX3 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY3 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize3 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX4 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY4 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize4 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX5 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY5 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize5 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX6 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY6 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize6 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX7 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY7 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize7 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX8 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY8 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize8 = Math.floor(Math.random() * 4) * 10 + 10;
+
+var objectPosX9 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+var objectPosY9 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+var objectSize9 = Math.floor(Math.random() * 4) * 10 + 10;
 
 function move(e){
     if(e.keyCode == 39){
@@ -72,6 +108,7 @@ function drawPlayer(){
     context.fillStyle = "#BB00BB";
     context.fill();
     context.stroke();
+    
 }
 function drawBall() {
     context.beginPath();
@@ -83,17 +120,62 @@ function drawBall() {
 
 function drawEndPoint(){
     context.fillRect(xEndPos, yEndPos, endPointX, endPointY);
-    context.fillStyle = "#FF0000";
+    context.fillStyle = "green";
     context.fill();
 }
 
 function drawObject(){
-        context.fillRect(objectPosX, objectPosY, objectSize, objectSize)
-        context.fillStyle = "#00FF00";
-        context.fill();
+    context.fillRect(objectPosX, objectPosY, objectSize, objectSize)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject1(){
+    context.fillRect(objectPosX1, objectPosY1, objectSize1, objectSize1)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject2(){
+    context.fillRect(objectPosX2, objectPosY2, objectSize2, objectSize2)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject3(){
+    context.fillRect(objectPosX3, objectPosY3, objectSize3, objectSize3)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject4(){
+    context.fillRect(objectPosX4, objectPosY4, objectSize4, objectSize4)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject5(){
+    context.fillRect(objectPosX5, objectPosY5, objectSize5, objectSize5)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject6(){
+    context.fillRect(objectPosX6, objectPosY6, objectSize6, objectSize6)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject7(){
+    context.fillRect(objectPosX7, objectPosY7, objectSize7, objectSize7)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject8(){
+    context.fillRect(objectPosX8, objectPosY8, objectSize8, objectSize8)
+    context.fillStyle = "green";
+    context.fill();
+}
+function drawObject9(){
+    context.fillRect(objectPosX9, objectPosY9, objectSize9, objectSize9)
+    context.fillStyle = "#FF0000";
+    context.fill();
 }
 
-function collisionEnd(x1, y1, x2, y2){
+function collision(x1, y1, x2, y2){
     var xDistance = x2 - x1;
     var yDistance = y2 - y1;
     
@@ -106,6 +188,15 @@ function draw() {
     drawPlayer();
     drawEndPoint();
     drawObject();
+    drawObject1();
+    drawObject2();
+    drawObject3();
+    drawObject4();
+    drawObject5();
+    drawObject6();
+    drawObject7();
+    drawObject8();
+    drawObject9();
     animate();
     
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
@@ -119,12 +210,12 @@ function draw() {
 }
 
 function animate(){
-    if (collisionEnd(xPos, yPos, xEndPos, yEndPos) <= 0){
+    if (collision(xPos, yPos, xEndPos, yEndPos) <= 0){
         alert("You Win!");
         xPos = 0;
         yPos = 0;
     }
-    console.log(collisionEnd(xPos, yPos, xEndPos, yEndPos));
+    console.log(collision(xPos, yPos, xEndPos, yEndPos));
 }
 
 setInterval(draw, 10);
