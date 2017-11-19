@@ -344,11 +344,9 @@ function animate(){
         window.location.reload();
     }
     if (collision(xPos, yPos, xEndPos, yEndPos) <= 0){
-        //alert("You Win!");
-        levelNumber += 1;
         xPos = 0;
         yPos = 0;
-        //window.location.reload(); 
+        levelNumber += 1;
     }
     if (collision(xPos, yPos, x, y) <= 15){
         alert("You Lose!");
