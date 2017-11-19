@@ -14,8 +14,8 @@ var playerY = 10;
 var endPointX = 10;
 var endPointY = 10;
 
-var xEndPos = 700;
-var yEndPos = 450;
+var xEndPos = 350;
+var yEndPos = 220;
 
 var levelNumber = 1;
 
