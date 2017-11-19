@@ -17,6 +17,10 @@ var endPointY = 10;
 var xEndPos = 700;
 var yEndPos = 450;
 
+var objectPosX = Math.floor(Math.random() * canvas.width) + 10;
+var objectPosY = Math.floor(Math.random() * canvas.height) + 10;
+var objectSize = Math.floor(Math.random() * 30) + 10;
+
 function move(e){
     if(e.keyCode == 39){
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -58,6 +62,11 @@ function move(e){
 
 document.onkeydown = move;
 
+//var objects = [];
+//function objectsPos(){
+    //for (var i=0; i<100; i++)
+        //objects[i] = new object(Math.random(10, 790), Math.random(10, 490), 10);
+//}
 function drawPlayer(){
     context.fillRect(xPos, yPos, playerX, playerY);
     context.fillStyle = "#BB00BB";
@@ -78,6 +87,12 @@ function drawEndPoint(){
     context.fill();
 }
 
+function drawObject(){
+        context.fillRect(objectPosX, objectPosY, objectSize, objectSize)
+        context.fillStyle = "#00FF00";
+        context.fill();
+}
+
 function collisionEnd(x1, y1, x2, y2){
     var xDistance = x2 - x1;
     var yDistance = y2 - y1;
@@ -90,7 +105,9 @@ function draw() {
     drawBall();
     drawPlayer();
     drawEndPoint();
+    drawObject();
     animate();
+    
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
