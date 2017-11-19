@@ -332,8 +332,7 @@ function draw() {
 function animate(){
     if (collision(xPos, yPos, xEndPos, yEndPos) <= 0){
         alert("You Win!");
-        xPos = 0;
-        yPos = 0;
+        window.location.reload(); 
     }
     if (collision(xPos, yPos, x, y) <= 15){
         alert("You Lose!");
