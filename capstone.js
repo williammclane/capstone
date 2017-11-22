@@ -3,8 +3,10 @@ var context = canvas.getContext("2d");
 var ballRadius = 15;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 3;
-var dy = -3;
+var dx = 0;
+var dy = -0;
+
+var cookie = document.cookie;
 
 var xPos = 0;
 var yPos = 0;
@@ -303,6 +305,7 @@ function nextLevel(){
     context.fillText("Level - " + levelNumber, 350, 10);
 }
 
+
 function collision(x1, y1, x2, y2){
     var xDistance = x2 - x1;
     var yDistance = y2 - y1;
@@ -310,9 +313,21 @@ function collision(x1, y1, x2, y2){
     return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 
+function ballMove(){
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+    }
+    x += dx;
+    y += dy;
+}
+
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
+    ballMove();
     drawPlayer();
     drawEndPoint();
     drawObject();
@@ -327,15 +342,6 @@ function draw() {
     drawObject9();
     nextLevel();
     animate();
-    
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-        dx = -dx;
-    }
-    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-        dy = -dy;
-    }
-    x += dx;
-    y += dy;
 }
 
 function animate(){
@@ -347,6 +353,45 @@ function animate(){
         xPos = 0;
         yPos = 0;
         levelNumber += 1;
+        objectPosX = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize = 10;
+
+        objectPosX1 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY1 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize1 = 10;
+
+        objectPosX2 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY2 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize2 = 10;
+
+        objectPosX3 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY3 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize3 = 10;
+
+        objectPosX4 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY4 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize4 = 10;
+
+        objectPosX5 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY5 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize5 = 10;
+
+        objectPosX6 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY6 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize6 = 10;
+
+        objectPosX7 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY7 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize7 = 10;
+
+        objectPosX8 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY8 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize8 = 10;
+
+        objectPosX9 = Math.floor(Math.random() * (canvas.width/10)) * 10;
+        objectPosY9 = Math.floor(Math.random() * (canvas.height/10)) * 10;
+        objectSize9 = 10;
     }
     if (collision(xPos, yPos, x, y) <= 15){
         alert("You Lose!");
