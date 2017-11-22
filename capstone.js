@@ -3,8 +3,8 @@ var context = canvas.getContext("2d");
 var ballRadius = 15;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 0;
-var dy = -0;
+var dx = 3;
+var dy = -3;
 
 var cookie = document.cookie;
 
